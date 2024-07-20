@@ -6,8 +6,6 @@
 
 #include <NvInfer.h>
 
-#include "network.hpp"
-
 using namespace nvinfer1;
 
 class Logger : public nvinfer1::ILogger{
@@ -97,9 +95,6 @@ int main(int argc, char** argv) {
     const float* b = static_cast<const float*>(beta.values);
     const float* m = static_cast<const float*>(mean.values);
     const float* v = static_cast<const float*>(var.values);
-
-    // scale = alpha / sqrt(var + 1e-5)
-    // shift = - alpha / sqrt(var + 1e-5) * mean + beta
 
     float* scale = new float[numChannels];
     float* shift = new float[numChannels];
